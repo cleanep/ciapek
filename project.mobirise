@@ -23,7 +23,7 @@
         "display7Font": "CormorantGaramond-SemiBold",
         "display7Size": "1.2",
         "display4Font": "CormorantGaramond-SemiBold",
-        "display4Size": "1.2",
+        "display4Size": "1.4",
         "isRoundedImages": false,
         "isRoundedButtons": false,
         "isLargeButtons": false,
@@ -59,7 +59,7 @@
         "file": "@PROJECT_PATH@/fonts/CormorantGaramond-SemiBold/font.ttf"
       }
     ],
-    "uniqCompNum": 34,
+    "uniqCompNum": 46,
     "versionPublish": "5.9.17",
     "imageResize": true,
     "screenshot": "screenshot.png",
@@ -75,7 +75,7 @@
       "colorText": "#a7a7a7",
       "colorLink": "#149dcc",
       "underlineLink": false,
-      "text": "Kontynuując zgadzasz się na nasze <a href='terms.html'>zasady</a> i <a href='policy.html'>politykę prywatnosci</a>."
+      "text": "Kontynuując zgadzasz się na nasze <a href='terms.html'>zasady</a> i <a href='terms.html'>politykę prywatnosci</a>."
     }
   },
   "pages": {
