@@ -1,30 +1,30 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uploadDir = 'uploads/';
-    $uploadedFiles = [];
-    foreach ($_FILES['file']['tmp_name'] as $key => $tmp_name) {
+// Sprawdzamy, czy plik został przesłany poprawnie
+if(isset($_FILES['file'])) {
+    $errors = [];
+    $path = 'uploads/';
+
+    // Iterujemy przez tablicę przesłanych plików
+    foreach($_FILES['file']['tmp_name'] as $key => $tmp_name) {
         $file_name = $_FILES['file']['name'][$key];
+        $file_size = $_FILES['file']['size'][$key];
         $file_tmp = $_FILES['file']['tmp_name'][$key];
         $file_type = $_FILES['file']['type'][$key];
-        $file_size = $_FILES['file']['size'][$key];
-        $file_error = $_FILES['file']['error'][$key];
 
-        if ($file_error == UPLOAD_ERR_OK && is_uploaded_file($file_tmp)) {
-            if (!move_uploaded_file($file_tmp, $uploadDir . $file_name)) {
-                echo "Przepraszamy, wystąpił problem podczas przesyłania plików.";
-            } else {
-                $uploadedFiles[] = $file_name;
-            }
-        } else {
-            echo "Przepraszamy, wystąpił problem podczas przesyłania plików.";
+        // Sprawdzamy, czy rozmiar pliku nie przekracza 1MB (1048576 bajtów)
+        if($file_size > 1048576) {
+            $errors[] = 'Plik ' . $file_name . ' jest zbyt duży. Maksymalny rozmiar pliku to 1MB.';
         }
-    }
 
-    // Wyświetlenie przesłanych plików
-    if (!empty($uploadedFiles)) {
-        echo "Przesłano następujące pliki:<br>";
-        foreach ($uploadedFiles as $file) {
-            echo $file . "<br>";
+        // Przenosimy plik do folderu uploads, jeśli nie ma żadnych błędów
+        if(empty($errors)) {
+            move_uploaded_file($file_tmp, $path . $file_name);
+            echo 'Plik ' . $file_name . ' został pomyślnie przesłany.';
+        } else {
+            // Jeśli wystąpiły błędy, wyświetlamy je użytkownikowi
+            foreach($errors as $error) {
+                echo $error . '<br>';
+            }
         }
     }
 }
