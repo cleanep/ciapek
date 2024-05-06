@@ -297,6 +297,9 @@
             <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
                <!-- <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="ep3nQc6O3sZQDBXVBDin5WZKm/OtTyhVSnLqY6CcV7QzUv1DTRF/rqoWqthqwNUVDMbg+IRQ0w42+dUWcOUT/sCLWWChwmXIkMDbJqf7YgHc38wGtkLaouJXiBl27NBx">-->
 		    <form action="upload.php" method="post" enctype="multipart/form-data">
+		    <!--myform>-->
+		    <form id="myForm" enctype="multipart/form-data">
+
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dzięki za wypełnienie, odezwiemy się jak najszybciej.</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -342,7 +345,30 @@
             </div>
         </div>
     </div>-->
+	
+<!-- tu jest jquery jak coś-->
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#submit-btn').click(function() {
+            var formData = new FormData($('#myForm')[0]);
+            $.ajax({
+                url: 'upload.php',
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        });
+    });
+</script>
+
 
 <section data-bs-version="5.1" class="contacts01 cid-u9xIJU6EpJ" id="contacts01-d">
     
