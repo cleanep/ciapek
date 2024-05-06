@@ -1,2 +1,100 @@
 <?php
-$base64_image = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwoAAASCCAYAAACipWiYAAAKq2lDQ1BJQ0MgUHJvZmlsZQAASImVlwdUU+kSgP9700NCSwhFSuhNkE4AKSG0AArSwUZIAoQSQiA0sSHiCqwoKiJY0VURBdcCyFoQUWyLgFKsC7IoKOtiwYbKu8Ah7O47773zJmfOfHcy/8z8/7n/OXMBIMtzRKIkWB6AZGG6OMjbnR4RGUXHDQM08oOBFtDgcNNEzMBAf4DIrP27fOgB0JS9ZzaV69///6+iwOOncQGAAhGO4aVxkxE+i+hLrkicDgDqAOLXzUwXTXErwlQx0iDCfVMcN8OjUxwzzWgwHRMSxEKYCgCexOGI4wAg0RE/PYMbh+QhuSFsIeQJhAiLEHZJTk7hIXwKYSMkBvGRpvIzYv6SJ+5vOWOkOTmcOCnP7GVa8B6CNFESJ/v/PI7/LclJktkaBoiS4sU+QYhVRM6sLzHFT8rCmMUBsyzgTcdPc7zEJ3SWuWmsqFnmcTz8pGuTFvvPcqzAiy3Nk84OmWV+mmfwLItTgqS1YsUs5ixzxHN1JYmhUn88ny3NnxMfEj7LGYKwxbOclhjsNxfDkvrFkiBp/3yht/tcXS/p3pPT/rJfAVu6Nj0+xEe6d85c/3whcy5nWoS0Nx7fw3MuJlQaL0p3l9YSJQVK4/lJ3lJ/WkawdG068kLOrQ2UnmECxzdwlgELpIAkRMWADvyRJw8A0vlZ6VMbYaWIssWCuPh0OhO5YXw6W8g1n0+3srCyAWDqvs68Du9o0/cQot2a8+U9AcA5cnJy8sKczx85j7PDABBH53yGNQCQLwFwYyNXIs6Y8U3fJQwgAjlABapAE+gCI2AGrIAdcAJuwBP4ggAQAiLBCsAF8SAZ6TwT5IL1oAAUga1gJ6gA+8EhcAycBKdBA7gAroDr4DboAN3gEegHQ+AVGAMfwAQEQTiIDFEgVUgL0odMISuIAblAnpA/FARFQtFQHCSEJFAutAEqgkqhCuggVA39DJ2HrkA3oU7oATQAjUBvoS8wCibBVFgDNoAXwAyYCfvBIfByOA5OhXPgfHgLXA5XwSfgevgKfBvuhvvhV/A4CqBkUDSUNsoMxUCxUAGoKFQsSoxagypElaGqULWoJlQb6h6qHzWK+ozGoiloOtoM7YT2QYeiuehU9Bp0MboCfQxdj25F30MPoMfQ3zFkjDrGFOOIYWMiMHGYTEwBpgxzBHMOcw3TjRnCfMBisTSsIdYe64ONxCZgV2GLsXuxddhmbCd2EDuOw+FUcaY4Z1wAjoNLxxXgduNO4C7junBDuE94GbwW3grvhY/CC/F5+DL8cfwlfBf+BX6CIE/QJzgSAgg8QjahhHCY0ES4SxgiTBAViIZEZ2IIMYG4nlhOrCVeIz4mvpORkdGRcZBZIiOQWSdTLnNK5obMgMxnkiLJhMQiLSNJSFtIR0nNpAekd2Qy2YDsRo4ip5O3kKvJV8lPyZ9kKbLmsmxZnuxa2UrZetku2ddyBDl9OabcCrkcuTK5M3J35UblCfIG8ix5jvwa+Ur58/K98uMKFAVLhQCFZIViheMKNxWGFXGKBoqeijzFfMVDilcVBykoii6FReFSNlAOU65RhqhYqiGVTU2gFlFPUtupY0qKSjZKYUpZSpVKF5X6aSiaAY1NS6KV0E7TemhflDWUmcp85c3Ktcpdyh9V5qm4qfBVClXqVLpVvqjSVT1VE1W3qTaoPlFDq5moLVHLVNundk1tdB51ntM87rzCeafnPVSH1U3Ug9RXqR9Sv6M+rqGp4a0h0titcVVjVJOm6aaZoLlD85LmiBZFy0VLoLVD67LWS7oSnUlPopfTW+lj2uraPtoS7YPa7doTOoY6oTp5OnU6T3SJugzdWN0dui26Y3paeov0cvV
+
+// Adres e-mail, na który mają być wysłane pliki
+$to = 'biuro@cleanep.pl';
+
+// Temat wiadomości e-mail
+$subject = 'Nowe pliki przesłane przez formularz';
+
+// Treść wiadomości e-mail
+$message = 'Nowe pliki przesłane przez formularz:';
+
+// Iterujemy przez każdy przesłany plik
+foreach ($_FILES['file']['tmp_name'] as $key => $tmp_name) {
+    $file_name = $_FILES['file']['name'][$key];
+    $file_tmp = $_FILES['file']['tmp_name'][$key];
+
+    // Dodajemy załącznik do wiadomości e-mail
+    $file = file_get_contents($file_tmp);
+    $content = chunk_split(base64_encode($file));
+    $uid = md5(uniqid(time()));
+    $file_type = $_FILES['file']['type'][$key];
+    $file_size = $_FILES['file']['size'][$key];
+
+    $message .= "\r\n";
+    $message .= "--" . $uid . "\r\n";
+    $message .= "Content-Type: " . $file_type . "; name=\"" . $file_name . "\"\r\n";
+    $message .= "Content-Transfer-Encoding: base64\r\n";
+    $message .= "Content-Disposition: attachment; filename=\"" . $file_name . "\"\r\n";
+    $message .= "\r\n";
+    $message .= $content . "\r\n";
+}
+
+// Dodajemy końcówkę wiadomości e-mail
+$message .= "\r\n";
+$message .= "--" . $uid . "--";
+
+// Nagłówki e-maila
+$headers = "From: your_email@example.com\r\n";
+$headers .= "Reply-To: your_email@example.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: multipart/mixed; boundary=\"" . $uid . "\"\r\n";
+
+// Wysyłamy e-mail
+if (mail($to, $subject, $message, $headers)) {
+    echo 'Pliki zostały wysłane na Twój adres e-mail.';
+} else {
+    echo 'Wystąpił błąd podczas wysyłania plików.';
+}
+
+?>
+<?php
+
+// Adres e-mail, na który mają być wysłane pliki
+$to = 'twoj@mail.com';
+
+// Temat wiadomości e-mail
+$subject = 'Nowe pliki przesłane przez formularz';
+
+// Treść wiadomości e-mail
+$message = 'Nowe pliki przesłane przez formularz:';
+
+// Iterujemy przez każdy przesłany plik
+foreach ($_FILES['file']['tmp_name'] as $key => $tmp_name) {
+    $file_name = $_FILES['file']['name'][$key];
+    $file_tmp = $_FILES['file']['tmp_name'][$key];
+
+    // Dodajemy załącznik do wiadomości e-mail
+    $file = file_get_contents($file_tmp);
+    $content = chunk_split(base64_encode($file));
+    $uid = md5(uniqid(time()));
+    $file_type = $_FILES['file']['type'][$key];
+    $file_size = $_FILES['file']['size'][$key];
+
+    $message .= "\r\n";
+    $message .= "--" . $uid . "\r\n";
+    $message .= "Content-Type: " . $file_type . "; name=\"" . $file_name . "\"\r\n";
+    $message .= "Content-Transfer-Encoding: base64\r\n";
+    $message .= "Content-Disposition: attachment; filename=\"" . $file_name . "\"\r\n";
+    $message .= "\r\n";
+    $message .= $content . "\r\n";
+}
+
+// Dodajemy końcówkę wiadomości e-mail
+$message .= "\r\n";
+$message .= "--" . $uid . "--";
+
+// Nagłówki e-maila
+$headers = "From: your_email@example.com\r\n";
+$headers .= "Reply-To: your_email@example.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: multipart/mixed; boundary=\"" . $uid . "\"\r\n";
+
+// Wysyłamy e-mail
+if (mail($to, $subject, $message, $headers)) {
+    echo 'Pliki zostały wysłane na Twój adres e-mail.';
+} else {
+    echo 'Wystąpił błąd podczas wysyłania plików.';
+}
+
+?>
