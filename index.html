@@ -281,21 +281,37 @@
   </div>
 </section>
 
-<section data-bs-version="5.1" class="form5 cid-uc6fjw8DL3" id="form02-1h">
-    
-    
-    <div class="container">
+<section data-bs-version="5.1" class="form5" group="Forms" plugins="formstyler, datepicker" mbr-class="{'mbr-parallax-background': bg.parallax}">
+    <mbr-parameters>
+        <header>Size</header>
+        <input type="checkbox" title="Full Width" name="fullWidth">
+        <input type="range" inline="" title="Top" name="paddingTop" min="0" max="10" step="1" value="6">
+        <input type="range" inline="" title="Bottom" name="paddingBottom" min="0" max="10" step="1" value="6">
+        <header>Show/Hide</header>
+        <input type="checkbox" title="Title" name="showTitle" checked="">
+        <input type="checkbox" title="Subtitle" name="showSubtitle" checked="">
+        <header>Background</header>
+        <fieldset type="background" parallax="" name="bg">
+            <input type="image" title="Image" value="file:///Users/sandra/Library/Application%20Support/Mobirise.com/Mobirise/projects/project-2024-03-27_145628/assets/images/background1.jpg">
+            <input type="color" title="Color" value="#edefeb" selected="">
+        </fieldset>
+        <input type="checkbox" title="Overlay" name="overlay" condition="bg.type !== 'color'" checked="">
+        <input type="color" title="Overlay Color" name="overlayColor" value="#ffffff" condition="overlay &amp;&amp; bg.type !== 'color'">
+        <input type="range" inline="" title="Opacity" name="overlayOpacity" min="0" max="1" step="0.1" value="0.4" condition="overlay &amp;&amp; bg.type !== 'color'">
+    </mbr-parameters>
+    <div class="mbr-overlay" mbr-if="(overlay &amp;&amp; bg.type=='image')"></div>
+    <div mbr-class="{'container': !fullWidth, 'container-fluid': fullWidth}">
         <div class="row justify-content-center">
             <div class="col-12 content-head">
-                <div class="mbr-section-head mb-5">
-                    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">Napisz do nas!</h3>
-                    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">Pomożemy Ci sprawdzić czy potrzebujesz naszych usług - wypełnij formularz albo skontaktuj się z nami bezpośrednio przez maila lub telefon&nbsp;</h4>
+                <div class="mbr-section-head mb-5" mbr-if="showTitle || showSubtitle">
+                    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0" mbr-theme-style="display-2" mbr-if="showTitle" data-app-selector=".mbr-section-title">Napisz do nas!</h3>
+                    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4" mbr-theme-style="display-7" mbr-if="showSubtitle" data-app-selector=".mbr-section-subtitle">Pomożemy Ci sprawdzić czy potrzebujesz naszych usług - wypełnij formularz albo skontaktuj się z nami bezpośrednio przez maila lub telefon&nbsp;</h4>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="Z0LpxeTshG9OPLDVyLMp5JeeJaWzVcrIQl6hplZGPdgEn0TDpj+c8CMRmhVbHkbWGKEzd4yr+BUm4O2yBtKsfEFlP56gOFj2JqylulJXz7JGt8gzdhxqiTQeCtlvUEsV">
+            <div mbr-form="" class="col-lg-8 mx-auto mbr-form">
+                <form action="biuro@cleanep.pl" name="Form Name" method="POST" class="mbr-form form-with-styler" data-verified="biuro@cleanep.pl">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dzięki za wypełnienie, odezwiemy się jak najszybciej.</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -304,29 +320,24 @@
                     </div>
                     <div class="dragArea row">
                         <div class="col-md col-sm-12 form-group mb-3" data-for="name">
-                            <input type="text" name="name" placeholder="Imię i Nazwisko" data-form-field="name" class="form-control" value="" id="name-form02-1h">
+                            <input type="text" name="name" placeholder="Imię i Nazwisko" data-form-field="name" class="form-control" value="">
                         </div>
                         <div class="col-md col-sm-12 form-group mb-3" data-for="email">
-                            <input type="email" name="email" placeholder="E-mail" data-form-field="email" class="form-control" value="" id="email-form02-1h">
+                            <input type="email" name="email" placeholder="E-mail" data-form-field="email" class="form-control" value="">
                         </div>
                         <div class="col-12 form-group mb-3" data-for="phone">
-                            <input type="tel" name="phone" placeholder="Telefon" data-form-field="phone" class="form-control" value="" id="phone-form02-1h">
+                            <input type="tel" name="phone" placeholder="Telefon" data-form-field="phone" class="form-control" value="">
                         </div>
                         <div class="col-12 form-group mb-3" data-for="textarea">
-                            <textarea name="textarea" placeholder="Jak mamy się kontaktować - telefon/email. Informacje potrzebne do sporządzenia Śche - Projekt domu, instalacje, itp" data-form-field="textarea" class="form-control" id="textarea-form02-1h"></textarea>
+                            <textarea name="textarea" placeholder="Jak mamy się kontaktować - telefon/email. Informacje potrzebne do sporządzenia Śche - Projekt domu, instalacje, itp" data-form-field="textarea" class="form-control"></textarea>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-danger display-7">Wyślij</button></div>
+                        <div mbr-buttons="true" mbr-theme-style="display-7" data-toolbar="-mbrBtnMove,-mbrLink,-mbrBtnRemove,-mbrBtnAdd" class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><a type="submit" class="btn btn-danger" data-app-placeholder="Type Text">Wyślij</a></div>
                     </div>
-                <span class="gdpr-block">
-<label>
-<span class="textGDPR display-7" style="color: #a7a7a7"><input type="checkbox" name="gdpr" id="gdpr-form02-1h" required="">Kontynuując zgadzasz się na nasze <a style="color: #149dcc; text-decoration: none;" href="terms.html">zasady</a> oraz <a style="color: #149dcc; text-decoration: none;" href="policy.html">politykę prywatności</a>.</span>
-</label>
-</span></form>
+                </form>
             </div>
         </div>
     </div>
 </section>
-
 
 <section data-bs-version="5.1" class="contacts01 cid-u9xIJU6EpJ" id="contacts01-d">
     
