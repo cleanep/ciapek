@@ -75,7 +75,7 @@
       "colorText": "#a7a7a7",
       "colorLink": "#149dcc",
       "underlineLink": false,
-      "text": "Kontynuując zgadzasz się na nasze <a href='terms.html'>zasady</a> i <a href='policy.html'>politykę prywatnosci</a>."
+      "text": "Kontynuując zgadzasz się na nasze <a href='terms.html'>zasady</a> i <a href='terms.html'>politykę prywatnosci</a>."
     }
   },
   "pages": {
