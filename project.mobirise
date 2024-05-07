@@ -1991,6 +1991,127 @@
           "_once": false,
           "_params": {}
         },
+                {
+          "alias": "witsec-mailform/components",
+          "_isSecondary": true,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value"
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)"
+            },
+            ".showAlerts": {
+              "display": "block !important"
+            },
+            ".rowflexrev": {
+              "display": "-webkit-flex"
+            },
+            "& when (@confirmationBelow)": {
+              ".ws-form-alerts": {
+                "margin-top": "1rem"
+              }
+            },
+            ".title": {
+              "margin-bottom": "2rem"
+            },
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            "textarea.form-control": {
+              "min-height": "188px"
+            },
+            "LABEL": {
+              "color": "#232323",
+              "display": "initial"
+            },
+            ".mbr-section-terms": {
+              "text-align": "center",
+              "color": "#232323",
+              "margin-bottom": "0px"
+            },
+            ".mbr-section-labels": {
+              "color": "#232323",
+              "padding": "0",
+              "margin-bottom": ".357em",
+              "text-align": "left"
+            },
+            ".mbr-section-autorespond": {
+              "text-align": "left",
+              "color": "#232323",
+              "margin-bottom": "0px"
+            },
+            ".mbr-section-gdpr": {
+              "text-align": "left",
+              "color": "#232323",
+              "margin-bottom": "0px"
+            },
+            ".alert": {
+              "margin-bottom": "0"
+            },
+            ".alert-success": {
+              "background-color": "@bgColorSuccess"
+            },
+            ".alert-danger": {
+              "background-color": "@bgColorError"
+            },
+            ".btn": {
+              "display": "inline-flex"
+            },
+            ".mbr-alert-success": {
+              "text-align": "left",
+              "color": "#ffffff"
+            },
+            ".mbr-alert-danger": {
+              "text-align": "left",
+              "color": "#ffffff"
+            },
+            ".uploadBtn": {
+              "padding-top": "unit(@uploadBtnPaddingY, px) !important",
+              "padding-left": "unit(@uploadBtnPaddingX, px) !important"
+            },
+            "input[type=file]::file-selector-button": {
+              "border": "(@uploadBtnBdrWidth * 1px) solid @uploadBtnBdrColor !important",
+              "padding": ".2em .4em",
+              "border-radius": ".2em",
+              "background-color": "@uploadBtnBgColor !important",
+              "color": "@uploadBtnTxtColor !important",
+              "transition": "0.3s"
+            },
+            "input[type=file]::-webkit-file-upload-button": {
+              "border": "(@uploadBtnBdrWidth * 1px) solid @uploadBtnBdrColor !important",
+              "padding": ".2em .4em",
+              "border-radius": ".2em",
+              "background-color": "@uploadBtnBgColor !important",
+              "color": "@uploadBtnTxtColor !important",
+              "transition": "0.3s"
+            },
+            "input[type=file]::-ms-browse": {
+              "border": "(@uploadBtnBdrWidth * 1px) solid @uploadBtnBdrColor !important",
+              "padding": ".2em .4em",
+              "border-radius": ".2em",
+              "background-color": "@uploadBtnBgColor !important",
+              "color": "@uploadBtnTxtColor !important",
+              "transition": "0.3s"
+            },
+            "input, option, textarea": {
+              "color": "@inputColor"
+            }
+          },
+          "_name": "witsec-mailform",
+          "_sourceTheme": "startm5",
+          "_customHTML": "<section class=\"witsec-mailform mbr-section\" plugins=\"witsec-mailform\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n  <mbr-parameters>\n  <!-- Block parameters controls (Blue \"Gear\" panel) -->\n    <header>Global settings can be changed in the <a href=\"#\" onclick=\"$('.projects-show').click()\">Site Settings</a> of your website</header>\n\n    <header>Size</header>\n    <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" value=\"6\">\n    <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" value=\"6\">\n    <select title=\"Align Submit\" name=\"alignSubmit\">\n      <option value>Left</option>\n      <option value=\"align-center\" selected>Center</option>\n      <option value=\"align-right\">Right</option>\n    </select>\n\n    <header>Show/Hide</header>\n    <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n    <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n    <input type=\"checkbox\" title=\"Show Phone\" name=\"showPhone\" checked>\n    <input type=\"checkbox\" title=\"Show GDPR\" name=\"showGDPR\" checked>\n    <input type=\"checkbox\" title=\"Show reCAPTCHA Terms\" name=\"showTerms\">\n    <input type=\"checkbox\" title=\"Show Labels\" name=\"showLabels\">\n    <input type=\"checkbox\" title=\"Show Upload\" name=\"showUpload\" checked>\n\n    <header>Placeholders</header>\n    <input type=\"text\" title=\"Name\" name=\"phName\" value=\"Imię\">\n    <input type=\"text\" title=\"Email\" name=\"phEmail\" value=\"E-mail\">\n    <input type=\"text\" title=\"Phone\" name=\"phPhone\" value=\"Numer telefonu\" condition=\"showPhone\">\n    <input type=\"text\" title=\"Message\" name=\"phMessage\" value=\"Wiadomość\">\n\n    <header condition=\"showUpload\">Upload Options</header>\n    <input type=\"text\" title=\"File Extension Filter\" name=\"acceptedFileTypes\" value=\".gif, .jpg, .jpeg, .png, .pdf\" condition=\"showUpload\">\n    <input type=\"checkbox\" title=\"Multiple Files\" name=\"uploadMultiple\" condition=\"showUpload\" checked>\n    <input type=\"range\" inline title=\"Padding Top\" name=\"uploadBtnPaddingY\" min=\"0\" max=\"50\" step=\"0.5\" value=\"17\" condition=\"showUpload\">\n    <input type=\"range\" inline title=\"Padding Left\" name=\"uploadBtnPaddingX\" min=\"0\" max=\"50\" step=\"0.5\" value=\"33\" condition=\"showUpload\">\n    <input type=\"color\" title=\"Background Color\" name=\"uploadBtnBgColor\" value=\"#edefeb\" condition=\"showUpload\">\n    <input type=\"color\" title=\"Text Color\" name=\"uploadBtnTxtColor\" value=\"#232323\" condition=\"showUpload\">\n    <input type=\"color\" title=\"Border Color\" name=\"uploadBtnBdrColor\" value=\"#232323\" condition=\"showUpload\">\n    <input type=\"range\" inline title=\"Border Width\" name=\"uploadBtnBdrWidth\" min=\"0\" max=\"3\" step=\"0.25\" value=\"1\" condition=\"showUpload\">\n\n    <header>Form Options</header>\n    <input type=\"text\" title=\"Alternative Recipient (use Address Book ID as defined in Site Settings)\" name=\"recipientID\" value>\n    <input type=\"text\" title=\"Subject\" name=\"txtSubject\" value=\"A message from your website.\">\n    <select title=\"Autorespond\" name=\"autorespond\">\n      <option value=\"0\" selected>Off</option>\n      <option value=\"1\">On</option>\n      <option value=\"2\">User Decision</option>\n    </select>\n    <select title=\"On Success\" name=\"onsuccess\">\n      <option value=\"0\" selected>Stay</option>\n      <option value=\"1\">Redirect</option>\n    </select>\n    <input type=\"checkbox\" title=\"Confirmation Below Form\" name=\"confirmationBelow\">\n    <input type=\"color\" title=\"Input Text Color\" name=\"inputColor\" value=\"#000000\">\n\n    <header condition=\"onsuccess == 1\">RedirectURL</header>\n    <input type=\"text\" title=\"Redirect to\" name=\"redirectURL\" value=\"thanks.html\" condition=\"onsuccess == 1\">\n\n    <header>Mini Templates (optional)</header>\n    <textarea name=\"mtxt\" title=\"Normal Mail\"></textarea>\n    <textarea name=\"rtxt\" title=\"Response Mail\" condition=\"autorespond > 0\"></textarea>\n\n    <header>Alerts</header>\n    <input type=\"checkbox\" title=\"Show Alerts in Mobirise\" name=\"showAlerts\">\n    <input type=\"color\" title=\"Success BG Color\" name=\"bgColorSuccess\" value=\"#70c770\" condition=\"onsuccess == 0\">\n    <input type=\"color\" title=\"Error BG Color\" name=\"bgColorError\" value=\"#ff4a52\">\n\n    <header>Background</header>\n    <fieldset type=\"background\" name=\"bg\" parallax>\n        <input type=\"image\" title=\"Background Image\" value=\"@PROJECT_PATH@/assets/images/background.jpg\" parallax>\n        <input type=\"color\" title=\"Background Color\" value=\"#f7f7f7\" selected>\n        <input type=\"video\" title=\"Background Video\" value=\"http://www.youtube.com/watch?v=uNCr7NdOJgw\">\n    </fieldset>\n    <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\" checked>\n    <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#c1c1c1\" condition=\"overlay && bg.type !== 'color'\">\n    <input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.3\" condition=\"overlay && bg.type !== 'color'\">\n  <!-- End block parameters -->\n  </mbr-parameters>\n\n  <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type!== 'color'\" mbr-style=\"{'opacity': overlayOpacity, 'background-color': overlayColor}\">\n  </div>\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <div class=\"title col-12 col-lg-8\">\n        <h2 mbr-if=\"showTitle\" class=\"mbr-section-title align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-2\">Napisz do nas!</h2>\n        <h3 mbr-if=\"showSubtitle\" class=\"mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".mbr-section-subtitle\">Pomożemy Ci sprawdzić czy potrzebujesz naszych usług - wypełnij formularz albo skontaktuj się z nami bezpośrednio przez maila lub telefon&nbsp;</h3>\n      </div>\n    </div>\n  </div>\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <div class=\"media-container-column col-lg-8\">\n          <form class=\"mbr-form\">\n            <input type=\"hidden\" name=\"recipient\" value=\"{{recipientID}}\" mbr-if=\"recipientID\">\n            <input type=\"hidden\" name=\"subject\" value=\"{{txtSubject}}\">\n            <input type=\"hidden\" name=\"autorespond\" value=\"1\" mbr-if=\"autorespond=='1'\">\n            <input type=\"hidden\" name=\"redirectURL\" value=\"{{redirectURL}}\" mbr-if=\"onsuccess=='1'\">\n            <input type=\"hidden\" name=\"mtxt\" value=\"{{mtxt}}\" mbr-if=\"mtxt\">\n            <input type=\"hidden\" name=\"rtxt\" value=\"{{rtxt}}\" mbr-if=\"rtxt &amp;&amp; autorespond > 0\">\n\n            <div class=\"rowflexrev\" mbr-class=\"{ 'flex-column': !confirmationBelow, 'flex-column-reverse': confirmationBelow }\">\n              <div class=\"row\">\n                <div class=\"col-md-12 form-group ws-form-alerts\">\n                  <div hidden=\"hidden\" mbr-text class=\"alert alert-success col-12 mbr-alert-success mbr-fonts-style\" mbr-class=\"{showAlerts: !isPublish && showAlerts}\" mbr-theme-style=\"display-7\" data-app-edit=\"content\" data-app-selector=\".mbr-alert-success\" mbr-if=\"onsuccess=='0'\">Thanks for filling out the form!</div>\n                  <div hidden=\"hidden\" mbr-text class=\"alert alert-danger col-12 mbr-alert-danger mbr-fonts-style\" mbr-class=\"{showAlerts: !isPublish && showAlerts}\" mbr-theme-style=\"display-7\" data-app-edit=\"content\" data-app-selector=\".mbr-alert-danger\">An error occurred. Please try again.</div>\n                </div>\n              </div>\n\n              <div class=\"row\">\n                <div class=\"col-md-4 form-group\" mbr-class=\"{'col-md-6': !showPhone}\">\n                  <p mbr-text mbr-theme-style=\"display-7\" class=\"mbr-section-labels mbr-fonts-style\" data-app-edit=\"content\" data-app-selector=\".mbr-section-labels\" mbr-if=\"showLabels\">Name</p>\n                  <input type=\"text\" name=\"name\" placeholder=\"{{phName}}\" mbr-theme-style=\"display-7\" required=\"required\" class=\"form-control\">\n                </div>\n                <div class=\"col-md-4 form-group\" mbr-class=\"{'col-md-6': !showPhone}\">\n                  <p mbr-text mbr-theme-style=\"display-7\" class=\"mbr-section-labels mbr-fonts-style\" data-app-edit=\"content\" data-app-selector=\".mbr-section-labels\" mbr-if=\"showLabels\">Email</p>\n                  <input type=\"email\" name=\"email\" placeholder=\"{{phEmail}}\" mbr-theme-style=\"display-7\" required=\"required\" class=\"form-control\">\n                </div>\n                <div mbr-if=\"showPhone\" class=\"col-md-4 form-group\">\n                  <p mbr-text mbr-theme-style=\"display-7\" class=\"mbr-section-labels mbr-fonts-style\" data-app-edit=\"content\" data-app-selector=\".mbr-section-labels\" mbr-if=\"showLabels\">Phone</p>\n                  <input type=\"tel\" name=\"phone\" placeholder=\"{{phPhone}}\" mbr-theme-style=\"display-7\" class=\"form-control\">\n                </div>\n                <div class=\"col-md-12 form-group\">\n                  <p mbr-text mbr-theme-style=\"display-7\" class=\"mbr-section-labels mbr-fonts-style\" data-app-edit=\"content\" data-app-selector=\".mbr-section-labels\" mbr-if=\"showLabels\">Message</p>\n                  <textarea name=\"message\" placeholder=\"{{phMessage}}\" mbr-theme-style=\"display-7\" required=\"required\" class=\"form-control\"></textarea>\n                </div>\n                <div class=\"col-md-12 form-group mb-3\" mbr-if=\"showUpload\">\n                  <p mbr-text mbr-theme-style=\"display-7\" class=\"mbr-section-labels mbr-fonts-style\" data-app-edit=\"content\" data-app-selector=\".mbr-section-labels\" mbr-if=\"showLabels\">File</p>\n                  <input class=\"form-control uploadBtn\" type=\"file\" name=\"file\" accept=\"{{acceptedFileTypes}}\" mbr-if=\"!uploadMultiple\">\n                  <input class=\"form-control uploadBtn\" type=\"file\" name=\"file[]\" accept=\"{{acceptedFileTypes}}\" mbr-if=\"uploadMultiple\" multiple>\n                </div>\n                <div mbr-if=\"autorespond=='2' || showGDPR\" class=\"col-md-12 justify-content-center form-group\">\n                  <p class=\"mbr-section-autorespond mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-edit=\"content\" data-app-selector=\".mbr-section-autorespond\" mbr-if=\"autorespond=='2'\">\n                    <input type=\"checkbox\" name=\"autorespond\" value=\"1\">\n                    <label class=\"mbr-section-autorespond mbr-fonts-style\">Send me a copy</label>\n                  </p>\n                  <p class=\"mbr-section-gdpr mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-edit=\"content\" data-app-selector=\".mbr-section-gdpr\" mbr-if=\"showGDPR\">\n                    <input type=\"checkbox\" name=\"GDPR\" value=\"1\" required>\n                    <label class=\"mbr-section-gdpr mbr-fonts-style\">By continuing you agree to our <a href=\"terms.html\">Terms of Service</a> and <a href=\"policy.html\">Privacy Policy</a>.</label></p>\n                </div>\n                <div mbr-if=\"showTerms\" class=\"col-md-12 justify-content-center form-group\">\n                  <p class=\"mbr-section-terms mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-edit=\"content\" data-app-selector=\".mbr-section-terms\">\n                    This form uses Google's reCAPTCHA. By continuing you agree to the <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Privacy</a> and <a href=\"https://policies.google.com/terms\" target=\"_blank\">Terms</a>.\n                  </p>\n                </div>\n                <div class=\"g-recaptcha col-md-12 form-group\" mbr-class=\"{'d-none': !isPublish}\"></div>\n                <div class=\"col-md-12 input-group-btn {{alignSubmit}}\" mbr-buttons=\"true\" mbr-theme-style=\"display-4\" data-toolbar=\"-mbrBtnMove,-mbrBtnLink,-mbrBtnAdd\"><a type=\"submit\" class=\"btn btn-form btn-danger\" data-app-placeholder=\"Type Text\">Wyślij formularz</a></div>\n              </div>\n            </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</section>",
+          "_anchor": "witsec-mailform-1g",
+          "_isUserblock": true,
+          "_cid": "uc62EcaacX",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {}
+        },
+
         {
           "_name": "form02",
           "_sourceTheme": "startm5",
