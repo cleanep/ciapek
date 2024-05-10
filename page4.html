@@ -71,45 +71,7 @@
         </div>
     </nav>
 </section>
-<section>
-  <h2>Formularz kontaktowy</h2>
 
-<form action="mailto:biuro@cleaep.pl" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-  <label for="name">Imię i nazwisko:</label><br>
-  <input type="text" id="name" name="name" required><br>
-  <label for="email">Adres e-mail:</label><br>
-  <input type="email" id="email" name="email" required><br>
-  <label for="message">Wiadomość:</label><br>
-  <textarea id="message" name="message" rows="4" required></textarea><br>
-  <label for="file">Wybierz plik:</label><br>
-  <input type="file" id="file" name="file" accept=".pdf,.png,.jpg,.jpeg,.docx" required><br><br>
-  <input type="submit" value="Wyślij">
-</form>
-
-<p id="result"></p>
-
-<script>
-function validateForm() {
-  // Prosty sposób na walidację - sprawdzenie, czy pola nie są puste
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
-  var message = document.getElementById("message").value;
-  var file = document.getElementById("file").value;
-  
-  if (name == "" || email == "" || message == "" || file == "") {
-    document.getElementById("result").innerHTML = "Niepowodzenie: Wypełnij wszystkie pola!";
-    return false;
-  } else {
-    document.getElementById("result").innerHTML = "Sukces: Formularz został wysłany!";
-    return true;
-  }
-}
-</script>
-
-<p>Uwaga: Pliki muszą być w formatach: PDF, PNG, JPG, JPEG, DOCX.</p>
-
-</section>
-  
 <section class="witsec-mailform mbr-section cid-uchfcsFvmf" id="witsec-mailform-1m" data-rv-view="611">
 
   
