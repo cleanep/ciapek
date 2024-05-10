@@ -71,30 +71,37 @@
         </div>
     </nav>
 </section>
-<section>
+<h2>Form Submit Example with File Upload</h2>
 
-    <div class="container">
-  <h1>Napisz do nas</h1>
-  <form target="_blank" action="https://formsubmit.co/biuro@cleanep.pl" method="POST">
-    <div class="form-group">
-      <div class="form-row">
-        <div class="col">
-          <input type="text" name="name" class="form-control" placeholder="Imię i Nazwisko" required>
-        </div>
-        <div class="col">
-          <input type="email" name="email" class="form-control" placeholder="Email" required>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <textarea placeholder="Wiadomość" class="form-control" name="message" rows="10" required></textarea>
-    </div>
-    <label for="file">Select file:</label><br>
+<form id="myForm" enctype="multipart/form-data">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br>
+  <label for="message">Message:</label><br>
+  <textarea id="message" name="message" required></textarea><br><br>
+  <label for="file">Select file:</label><br>
   <input type="file" id="file" name="file" required><br><br>
-    <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
-  </form>
-</div>
-  </section>  
+  <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<script>
+function submitForm() {
+  var form = document.getElementById("myForm");
+  var formData = new FormData(form);
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://formsubmit.co/biuro@cleanep.pl", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // Obsłuż odpowiedź, jeśli to konieczne
+      console.log(xhr.responseText);
+    }
+  };
+  xhr.send(formData);
+}
+</script>
+
   
 <section class="witsec-mailform mbr-section cid-uchfcsFvmf" id="witsec-mailform-1m" data-rv-view="611">
 
